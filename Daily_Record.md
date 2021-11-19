@@ -186,3 +186,222 @@ batchsize: 也有影响
 - if 增加lr, batch size 最好也跟着增加，这样收敛更加稳定
 - 尽量使用大的lr, 因为很多研究表明更大的lr有利于提高泛化能力。如果真的要衰减，尝试其它方法：eg增加batchsize, **lr 对模型的收敛影响真的很大，慎重调整**
 
+# 2021.11.18 记录
+
+今天白天第一次训练，epochs=250, lr=0.01, 得到的最好结果为0.7左右，且
+
+![image-20211118162337711](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211118162337711.png)
+
+有问题
+
+1. loss始终不收敛，一会增大，一会儿变小
+2. 精度大部分时候很小，少部分时候很大
+3. 测试集的loss也随着训练集一样，变化趋势差不多的增大，变小
+
+模型上的问题
+
+1. 如何选择学习率
+2. 进行数据处理的方法（如何有数据处理的直觉）
+
+
+
+最后做了什么？
+
+1. 尝试了不同的学习率
+
+   lr=0.1, epochs =300, loss波动幅度比较大，总是先上升再急剧下降，accuracy也不大，最多在0.2附近
+
+   lr=0.001，epochs=300,  loss平缓下降，accuracy缓慢上升，总体loss上升和下降的趋势稳定，但是变动速度实在是太慢；且accuracy取值在0.2左右，差不多在80个epochs左右才开始变到0.01
+
+   lr=0.05， epochs=189，loss下降稳定，速度也保持的可以，总体loss和accuracy呈现的趋势正常，即loss稳定下降，类似于指数曲线；accuracy稳定上升，不过类似于线性曲线，accuracy最后最大值在0.6下面一点
+
+还想尝试的地方：
+
+1. 改变optimizer=RMSP, 设置初始学习率
+2. 尝试step-wise的lr递减方式
+3. 尝试添加batch_normalization层，减少batch，层之间的变换
+
+还需学习的新知识：
+
+1. Adam, RMSP 原理
+2. Batch Normalization原理
+
+
+
+# 2021.11.19
+
+## GD, SGD 学习
+
+[为什么说随机最速下降法 (SGD) 是一个很好的方法？ | 雷锋网 (leiphone.com)](https://www.leiphone.com/category/yanxishe/c7nM342MTsWgau9f.html)
+
+GD为什么要到SGD?
+$$
+x_{t+1} = x_t - \eta_t g_t
+$$
+
+
+- GD，梯度算的精确，慢
+
+- GD容易陷入鞍点（局部最小点），SGD可以帮助跳出鞍点，
+  $$
+  x_{t+1} = x_t - \eta_t g_t, E[g_t] = \triangledown f(x_t)
+  $$
+
+- SGD算出来的导数是大概的，GD算出来的导数是精确的，相当于说SGD的导数是加了噪声的
+
+
+
+鞍点的表达：
+
+考虑导数为0的点，成为Stationary points, 稳定点。可以是局部最小值，局部最大值，也可以是鞍点。
+
+判断：使用Hessian矩阵
+
+- H福鼎，说明所有的特征值都是负的。这个时候，无论往什么方向走，导数都会变负，函数值会下降。所以，这是局部最大值
+- H正定，说明所有特征值整的。这个时候，无论往什么方向走，导数都会变正，函数之会上升。所以，这是局部最小值。
+- H即包含正的特征值，又包含负的，这个稳定点是鞍点；某些方向函数值会上升，某些会下降
+- H可能包含特征值为0；无法判断稳定点属于哪一类，需参照更高维的导数；
+
+只考虑，前三种，第四种被称为退化的情况，考虑非退化的
+
+
+
+非退化，考虑struct saddle
+
+特点：对每个点x
+
+- 要么x的导数比较大
+- 要么x的Hessian矩阵包含一个负的特征值
+- 要么x已经离某一个局部最小值很近
+
+
+
+两篇论文：
+
+- 在鞍点加上扰动，能顺着负的特征值方向滑下去
+- 跑若干步GD, 再跑一步SGD（导数比较小，很长时间没有跑SGD)，
+
+
+
+## 炼丹实验室
+
+深度学习网络训练技巧汇总 - 萧瑟的文章 - 知乎 https://zhuanlan.zhihu.com/p/20767428
+
+参数初始化
+
+一定要搞参数的初始化，Xavier, He
+
+- uniform
+- normal
+- svd
+
+数据预处理方式
+
+- zero-center
+
+  X -= np.mean(X, axis=0) # zero-center
+
+  X /= np.std(X, axis=0) # normalize
+
+- PCA witening
+
+训练技巧
+
+- 梯度归一化
+
+- clip c（梯度裁剪）：限制最大梯度
+
+- dropout 对小数据防止过拟合有很好效果，一般设置为0.5
+
+  小数据，dropout + SGD，效果提升明显
+
+  dropout输入位置：建议放到输入->RNN与RNN->输出的位置. 还有一片参考论文讲述如何配置dropout的位置
+
+- adam, adadelta等，在小数据上，效果不如sgd, sgd慢，但是收敛后的效果一般都比较好。
+
+
+
+作者：乔卡
+链接：https://www.zhihu.com/question/274788355/answer/1071886489
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+```python
+tbCallBack = TensorBoard(
+    log_dir='./woca_logs',  # log 目录                         
+    histogram_freq=0,  # 按照何等频率（epoch）来计算直方图，0为不计算            
+    batch_size=32,     # 用多大量的数据计算直方图                         
+    write_graph=True,  # 是否存储网络结构图                         
+    write_grads=True,  # 是否可视化梯度直方图                         
+    write_images=True,  # 是否可视化参数                         
+    embeddings_freq=0,                         
+    embeddings_layer_names=None,                         
+    embeddings_metadata=None
+)
+```
+
+
+
+### batch_size
+
+[谈谈深度学习中的 Batch_Size_听雨322的博客-CSDN博客_深度学习中的batch](https://blog.csdn.net/qq_22080019/article/details/81357245)
+
+为什么要使用？
+
+首先决定的是下降的方向。
+
+如果数据集比较小，完全可以采用全数据集的形式
+
+好处：
+
+- 全数据集确定的方向能够更好的代表样本总体 
+- 由于不同权重的梯度差别巨大，选择一个全局的学习率很困难
+- full batch learning 可以使用Rprop只基于梯度符号并且针对性单独胡更新各权值
+
+大数据集
+
+好处 -> 坏处
+
+- 数据海量增长 +  内存限制，一次性载入不可行
+
+- Rprop的方式迭代，会由于各个batch之间的采样差异性，歌词梯度修正值相互抵消，无法修正。于是衍生出RMSprop的妥协方案
+
+  Rprop 弹性反向传播
+
+  均根反向传播：RMSprop
+
+- 
+
+### batch_size Gradient Descent
+
+[批量梯度下降(BGD)、随机梯度下降(SGD)以及小批量梯度下降(MBGD)的理解 - LLLiuye - 博客园 (cnblogs.com)](https://www.cnblogs.com/lliuye/p/9451903.html)
+
+> 注：损失和梯度更新一起计算，用多少数据计算损失，就用多少数据计算梯度，并且进行更新
+
+batch gradient descent: 使用全量数据进行迭代计算梯度，找到最小值，可能需要迭代10次，那么计算量为10 * 30w
+
+stochastic gradient descent: 一次参数更新只使用一个样本，若使用30w各样本进行参数更新，参数会被更新（迭代）30w次。这期间，SGD能保证收敛到一个合适的最小值。在收敛是，BGS计算10 * 30w次，而SGD计算1 * 30w次。
+
+mini batch gradient descent: 每次使用一个atch可以大大减小收敛所需要的迭代次数，同时可以使收敛到的结果更加接近梯度下降的效果（batch_size = 100, 迭代3000次，院校书SGD 30w次）
+
+### optimizer中的动量
+
+[深度学习各类优化器详解（动量、NAG、adam、Adagrad、adadelta、RMSprop、adaMax、Nadam、AMSGrad）_恩泽君的博客-CSDN博客_动量优化器](https://blog.csdn.net/qq_42109740/article/details/105401197)
+
+动量：
+
+针对不同维度的梯度大小差异（有的维度梯度变化很大，另一个维度变化比较小），这样会使得维度梯度在梯度大的维度上震荡，另外一个维度更新缓慢，添加动量，来使得各个梯度的更新变得更加均匀。
+
+是这样做的：
+
+一阶动量的更新：
+$$
+m_t = \beta m_{t-1} + (1 - \beta) \cfrac{\partial(Loss)}{\partial \theta_t}
+$$
+二阶动量的更新：对于动量$V=1$
+$$
+\theta_{t+1} = \theta_t - \eta m_t
+$$
+
+> 这篇文章讲的太好啦
+
