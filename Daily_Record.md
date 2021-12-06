@@ -405,3 +405,66 @@ $$
 
 > 这篇文章讲的太好啦
 
+
+
+
+
+# 2021.11.22
+
+[深度学习: 参数初始化 - 云+社区 - 腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1347911?from=article.detail.1508512)
+
+[深度学习策略选择 | 优化器选择，权重初始化，损失函数选择 - 简书 (jianshu.com)](https://www.jianshu.com/p/dcd35af75b8e)
+
+# 2021.11.29
+
+2021.11.29.RMSprop(0.01),loss_weight:0.95, 0.05, epochs=300,batch_size=64
+
+![image-20211129153728357](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129153728357.png)
+
+![image-20211129153741960](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129153741960.png)
+
+## 0.95, 0.05, RMSProp(0.03), 200, 64
+
+![image-20211129180405031](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180405031.png)
+
+### 200(50)
+
+![image-20211129180552833](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180552833.png)
+
+![image-20211129180606682](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180606682.png)
+
+### 200(50(50))
+
+![image-20211129180639866](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180639866.png)
+
+![image-20211129180654862](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180654862.png)
+
+# 2021.11.30
+
+![image-20211130111910413](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211130111910413.png)
+
+![image-20211130111924142](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211130111924142.png)
+
+## 2021.12.6
+
+RMSProp(0.001), 200, 64, 0.95, 0.05
+
+![image-20211206105303635](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206105303635.png)
+
+<img src="C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206105318678.png" alt="image-20211206105318678" style="zoom:100%;" />
+
+
+
+再跑100epochs
+
+![image-20211206113113300](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206113113300.png)
+
+![image-20211206113126295](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206113126295.png)
+
+
+
+RMSprop 0.001， 450epochs
+
+![image-20211206162247871](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206162247871.png)
+
+![image-20211206162301076](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206162301076.png)
