@@ -451,20 +451,80 @@ RMSProp(0.001), 200, 64, 0.95, 0.05
 
 <img src="./image/image-20211206105303635.png" alt="3.1" style="zoom:70%;" />
 
-<img src="image/image-20211206105318678.png" alt="image-20211206105318678" style="zoom:100%;" />
+<img src="image/image-20211206105318678.png" alt="image-20211206105318678" style="zoom:70%;" />
 
 
-
-再跑100epochs
+## 再跑100epochs
 <img src="./image/image-20211206113113300.png" alt="3.1" style="zoom:70%;" />
 
 <img src="./image/image-20211206113126295.png" alt="3.1" style="zoom:70%;" />
 
 
 
-RMSprop 0.001， 450epochs
+## RMSprop 0.001， 450epochs
 
 <img src="./image/image-20211206162247871.png" alt="3.1" style="zoom:70%;" />
 
-
 <img src="./image/image-20211206162301076.png" alt="3.1" style="zoom:70%;" />
+
+# 2021.12.7
+
+## RMSprop(0.005), 0.95:0.05, 400epochs, 
+
+![image-20211207113634947](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207113634947.png)
+
+![image-20211207113648971](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207113648971.png)
+
+## 50-400epochs
+
+![image-20211207113706219](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207113706219.png)
+
+![image-20211207113856688](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207113856688.png)
+
+
+
+## RMSprop(0.003), epochs=400, 0.95:0.05
+
+![image-20211207165748604](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207165748604.png)
+
+![image-20211207165801243](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207165801243.png)
+
+### error(train) distribution
+
+![image-20211207165821267](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207165821267.png)
+
+![image-20211207171026712](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207171026712.png)
+
+### the curve of test data
+
+![image-20211207182033009](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211207182033009.png)
+
+## 简单写写今天学习到了什么
+
+1 首先是rnn的基本结构，权值共享，多个rnn
+
+2 再次是关于数据的处理，对输出的处理
+
+3 学习了一下矩阵求导的知识，按行求导，按列求导等等，标量对向量求导、向量对向量求导、函数对矩阵求导、向量对矩阵求导。之前觉得一直要记忆的东西，竟然可以通过理解原理来习得，还是感觉听神奇的。
+
+4 搞好了误差的分布，分别查看了训练集和测试集的
+
+# GitHub Start 
+192.30.253.112    Build software better, together 
+192.30.253.119    gist.github.com
+151.101.184.133    assets-cdn.github.com
+151.101.184.133    raw.githubusercontent.com
+151.101.184.133    gist.githubusercontent.com
+151.101.184.133    cloud.githubusercontent.com
+151.101.184.133    camo.githubusercontent.com
+151.101.184.133    avatars0.githubusercontent.com
+151.101.184.133    avatars1.githubusercontent.com
+151.101.184.133    avatars2.githubusercontent.com
+151.101.184.133    avatars3.githubusercontent.com
+151.101.184.133    avatars4.githubusercontent.com
+151.101.184.133    avatars5.githubusercontent.com
+151.101.184.133    avatars6.githubusercontent.com
+151.101.184.133    avatars7.githubusercontent.com
+151.101.184.133    avatars8.githubusercontent.com
+
+ # GitHub End
