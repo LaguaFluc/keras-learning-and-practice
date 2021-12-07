@@ -190,7 +190,7 @@ batchsize: 也有影响
 
 今天白天第一次训练，epochs=250, lr=0.01, 得到的最好结果为0.7左右，且
 
-![image-20211118162337711](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211118162337711.png)
+![image-20211118162337711](image/image-20211118162337711.png)
 
 有问题
 
@@ -419,52 +419,53 @@ $$
 
 2021.11.29.RMSprop(0.01),loss_weight:0.95, 0.05, epochs=300,batch_size=64
 
-![image-20211129153728357](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129153728357.png)
+![image-20211129153728357](image/image-20211129153728357.png)
 
-![image-20211129153741960](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129153741960.png)
+![image-20211129153741960](image/image-20211129153741960.png)
 
 ## 0.95, 0.05, RMSProp(0.03), 200, 64
 
-![image-20211129180405031](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180405031.png)
+![image-20211129180405031](image/image-20211129180405031.png)
 
 ### 200(50)
 
-![image-20211129180552833](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180552833.png)
+![image-20211129180552833](image/image-20211129180552833.png)
 
-![image-20211129180606682](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180606682.png)
+![image-20211129180606682](image/image-20211129180606682.png)
 
 ### 200(50(50))
 
-![image-20211129180639866](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180639866.png)
+![image-20211129180639866](image/image-20211129180639866.png)
 
-![image-20211129180654862](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211129180654862.png)
+![image-20211129180654862](image/image-20211129180654862.png)
 
 # 2021.11.30
 
-![image-20211130111910413](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211130111910413.png)
+![image-20211130111910413](image/image-20211130111910413.png)
 
-![image-20211130111924142](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211130111924142.png)
+![image-20211130111924142](image/image-20211130111924142.png)
 
 ## 2021.12.6
 
 RMSProp(0.001), 200, 64, 0.95, 0.05
 
-![image-20211206105303635](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206105303635.png)
+![image-20211206105303635](image/image-20211206105303635.png)
 
-<img src="C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206105318678.png" alt="image-20211206105318678" style="zoom:100%;" />
+<img src="image/image-20211206105318678.png" alt="image-20211206105318678" style="zoom:100%;" />
 
 
 
 再跑100epochs
 
-![image-20211206113113300](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206113113300.png)
+![image-20211206113113300](image/image-20211206113113300.png)
 
-![image-20211206113126295](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206113126295.png)
+![image-20211206113126295](image/image-20211206113126295.png)
 
 
 
 RMSprop 0.001， 450epochs
 
-![image-20211206162247871](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206162247871.png)
+![image-20211206162247871](image/image-20211206162247871.png)
 
-![image-20211206162301076](C:\Users\laguarange\AppData\Roaming\Typora\typora-user-images\image-20211206162301076.png)
+![image-20211206162301076](image/image-20211206162301076.png)
+
