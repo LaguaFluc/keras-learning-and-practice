@@ -417,55 +417,54 @@ $$
 
 # 2021.11.29
 
+
 2021.11.29.RMSprop(0.01),loss_weight:0.95, 0.05, epochs=300,batch_size=64
+<img src="./image/image-20211129153728357.png" alt="0.95, 0.05" style="zoom:70%;" />
 
-![image-20211129153728357](image/image-20211129153728357.png)
-
-![image-20211129153741960](image/image-20211129153741960.png)
+<img src="./image/image-20211129153741960.png" alt="more 100 epochs" style="zoom:70%;" />
 
 ## 0.95, 0.05, RMSProp(0.03), 200, 64
 
-![image-20211129180405031](image/image-20211129180405031.png)
+<img src="./image/image-20211129180405031.png" alt="3.1" style="zoom:70%;" />
 
 ### 200(50)
 
-![image-20211129180552833](image/image-20211129180552833.png)
+<img src="./image/image-20211129180552833.png" alt="3.1" style="zoom:70%;" />
 
-![image-20211129180606682](image/image-20211129180606682.png)
+<img src="./image/image-20211129180606682.png" alt="3.1" style="zoom:70%;" />
 
 ### 200(50(50))
 
-![image-20211129180639866](image/image-20211129180639866.png)
+<img src="./image/image-20211129180639866.png" alt="3.1" style="zoom:70%;" />
 
-![image-20211129180654862](image/image-20211129180654862.png)
+<img src="./image/image-20211129180654862.png" alt="3.1" style="zoom:70%;" />
 
 # 2021.11.30
 
-![image-20211130111910413](image/image-20211130111910413.png)
+<img src="./image/image-20211130111910413.png" alt="3.1" style="zoom:70%;" />
 
-![image-20211130111924142](image/image-20211130111924142.png)
+<img src="./image/image-20211130111924142.png" alt="3.1" style="zoom:70%;" />
 
 ## 2021.12.6
 
 RMSProp(0.001), 200, 64, 0.95, 0.05
 
-![image-20211206105303635](image/image-20211206105303635.png)
+<img src="./image/image-20211206105303635.png" alt="3.1" style="zoom:70%;" />
 
 <img src="image/image-20211206105318678.png" alt="image-20211206105318678" style="zoom:100%;" />
 
 
 
 再跑100epochs
+<img src="./image/image-20211206113113300.png" alt="3.1" style="zoom:70%;" />
 
-![image-20211206113113300](image/image-20211206113113300.png)
-
-![image-20211206113126295](image/image-20211206113126295.png)
+<img src="./image/image-20211206113126295.png" alt="3.1" style="zoom:70%;" />
 
 
 
 RMSprop 0.001， 450epochs
 
-![image-20211206162247871](image/image-20211206162247871.png)
+<img src="./image/image-20211206162247871.png" alt="3.1" style="zoom:70%;" />
 
-![image-20211206162301076](image/image-20211206162301076.png)
 
+<img src="./image/image-20211206162301076.png" alt="3.1" style="zoom:70%;" />
