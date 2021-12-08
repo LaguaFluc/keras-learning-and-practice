@@ -509,6 +509,74 @@ RMSProp(0.001), 200, 64, 0.95, 0.05
 
 4 搞好了误差的分布，分别查看了训练集和测试集的
 
+
+
+# 2021.12.8
+
+## RMSprop(0.005), 0.95: 0.05, epochs=400
+
+到400个epochs，能够达到0.63的正确率
+
+
+
+## 在看的文章
+
+[零基础入门深度学习(5) - 循环神经网络 - 作业部落 Cmd Markdown 编辑阅读器 (zybuluo.com)](https://zybuluo.com/hanbingtao/note/541458)
+
+
+
+参考的文章
+
+[雅可比矩阵_百度百科 (baidu.com)](https://baike.baidu.com/item/雅可比矩阵/10753754?fr=aladdin)
+
+## 学习的知识
+
+1 雅可比矩阵
+
+2 RNN BPTT理解，矩阵求导
+
+3 colab跑代码操作
+
+## 关于一些尝试
+
+- [x] 1 跑一遍修正后的数据
+- [ ] 2 测试得到的最优thr_1, thr_2
+  - [x] 测试过10， 20
+  - [ ] 待测试修正后的相对误差0.15, 0.3
+- [ ] 3 keras 日志管理
+  - [ ] 未查找网页
+- [x] 4 RNN BPTT
+  - [x] 简单了解步骤
+  - [ ] 跟写代码
+- [ ] 5 LSTM basic
+  - [x] 知道LSTM是从结构上解决RNN梯度消失问题，通过增加三个门（忘记，留存，输出）
+  - [ ] 了解LSTM的应用
+  - [ ] LSTM优缺点
+
+
+
+## 关于thr_1 如何设置
+
+有三种办法
+
+1 直接加上训练过后的误差
+
+2 加上误差的平均数
+
+3 加上一个自设定的数（固定的），当作是超参数进行调整
+
+最后：
+
+(a) 将误差从原来的简单相对，变成
+$$
+error = \cfrac{y_{pred} - y_{true}}{y_{pred}}
+$$
+当$thr_1 < error < thr_2$时，
+
+当$error > 0$，则使用$y_{true} = (1 + e) * y_{true}$​进行更正，否则不操作
+
+当$error > thr_2$， 作删除操作
+
 # GitHub Start 
 192.30.253.112    Build software better, together 
 192.30.253.119    gist.github.com
