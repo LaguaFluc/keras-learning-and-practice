@@ -680,3 +680,46 @@ TODO：
 还看见了一个LR在测试集上也能达到0.99的预测准确率，真的这么强吗？我也没看着有对数据进行很复杂的特征处理鸭。
 
 To be explored.
+
+# 2021.12.22
+
+- [x] 写好了特征工程筛选（使用随机森林，fit生成特征重要性），查看模型的结果是否会发生改变
+
+- [x] 了解pandas处理组内数据，学会map函数（用在group之后的数据），apply函数的使用（用在series）
+
+  [超好用的 pandas 之 groupby - 简书 (jianshu.com)](https://www.jianshu.com/p/42f1d2909bb6)
+
+
+
+今天所做的事情分为两部步，
+
+首先需要处理输出，可以输入道RandomForestClassifier中去，这里主要是处理训练数据，得到RUL的列。
+
+> 这里新新学习了pandas的groupyby操作，还了解了一下agg的操作，
+>
+> [Group by: split-apply-combine — pandas 1.3.5 documentation (pydata.org)](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html)
+>
+> 总是要复习的pandas的列合并
+>
+> [pandas实现两个dataframe数据的合并：按行和按列_美丽心灵的博客-CSDN博客_dataframe按列合并](https://blog.csdn.net/weixin_44208569/article/details/89676843)
+
+第二，放到RandomForest模型中去，得到比较大的特征排名（大于0.01）
+
+得到的特征分别是 var_ + [2,3,4,6,8,9,10,12,13,14,15,16]
+
+去除的特征分别是 var_ + [0,1,5,7,11]
+
+第三，得到上述的特征，
+
+>(a)准备训练数据
+>
+>(b)进行标准化处理
+>
+>(c)去除无用特征
+>
+>(d)prepare_data()
+>
+>(e)处理test的输入输出
+>
+>(f)fit模型
+
