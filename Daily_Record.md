@@ -681,7 +681,7 @@ TODO：
 
 To be explored.
 
-# 2021.12.22
+# 2021.12.22(Wrapper Feature Engineering)
 
 - [x] 写好了特征工程筛选（使用随机森林，fit生成特征重要性），查看模型的结果是否会发生改变
 
@@ -723,3 +723,45 @@ To be explored.
 >
 >(f)fit模型
 
+# 2021.12.23(Feature engineering Test)
+
+方法参考：[scikit-learn中的特征选择方法 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/141506312)
+
+
+
+[tensorflow2知识总结（杂）---3、如何提高网络的拟合能力 - 范仁义 - 博客园 (cnblogs.com)](https://www.cnblogs.com/Renyi-Fan/p/13388877.html)
+
+[loss问题汇总（不收敛、震荡、nan） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/420053831)
+
+- [x] 跑了四次的模型
+  - [x] 只使用RandomForest跑，小于0.01的去除
+  - [x] 使用RandomForest之后的特征，等于0的去除
+  - [x] 使用`sklearn.feature_selection.f_classif`得到12个特征（`get_support`获得特征名）
+  - [x] 使用12个特征，并且增加神经元的个数（50-》128）
+
+
+
+# 2021.12.24（想要尝试的
+
+- [x] 尝试跑出600个epochs（原来不处理特征的）
+- [x] 对比处理特征之后，跑600个epochs
+- [x] 尝试找其它的方法来提高模型的准确率
+  - [x] 尝试减少训练数据集合
+
+关于训练集只选择一部分：
+
+[训练模型时，损失下降到某个值附近之后便不再下降，远没有达到理想的情况。请问后续应该如何调整参数？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/437040334/answer/1651769469)
+
+
+
+|                   | train_acc | train_mae | valid_acc | valid_mae | test_acc | test_mae | epochs |
+| ----------------- | --------- | --------- | --------- | --------- | -------- | -------- | ------ |
+| FE-去除小于0.001  | 0.5454    | 2.4200    | 0.5134    | 27.4259   | 0.4795   | 22.7204  | 400    |
+| FE-去除等于0      | 0.5897    | 2.0852    | 0.5354    | 27.7301   | 0.5338   | 23.3396  | 400    |
+| 神经元-50->128    | 0.6522    | 2.3165    | 0.6136    | 26.6359   | 0.5586   | 18.0637  | 600    |
+| 10000条数据       | 0.6944    | 1.3867    | 0.6863    | 15.8345   | 0.6129   | 15.2838  | 600    |
+| 10000条（第一次） |           |           |           |           |          |          |        |
+
+
+
+好的文章：如何成为一名合格的深度学习工程师？ - xingxing的回答 - 知乎 https://www.zhihu.com/question/302304559/answer/645365600
