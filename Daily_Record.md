@@ -765,6 +765,8 @@ To be explored.
 | batch_size = 128           | 0.6202    | 1.6491    | 0.5952    | 22.4944   | 0.5571   | 17.6558  | 600                                               |
 | FE-retry( importance <= 0) | 0.1398    | 28.6129   | 0.1389    | 20.9569   | 0.0924   | 20.4364  | 600                                               |
 | 后13000                    | 0.6477    | 1.6275    | 0.5924    | 33.7079   | 0.5529   | 21.9910  | 600                                               |
+| 去除68,91,95机器（时间     | 0.6561    | 1.7960    | 0.5584    | 20.9602   | 0.5471   | 14.8190  | 600                                               |
+| 去除8,32,77机器（特征      | 0.6576    | 2.5846    | 0.6351    | 26.4505   | 0.5933   | 20.5571  | 600                                               |
 
 Note: 
 
@@ -801,6 +803,41 @@ TODO:
 tomorrow TODO
 
 - [ ] dataset, check whether exist new
+
+  [hustcxl/Rotating-machine-fault-data-set: Open rotating mechanical fault datasets (开源旋转机械故障数据集整理) (github.com)](https://github.com/hustcxl/Rotating-machine-fault-data-set)
+
 - [ ] others Code, check evaluate
+
 - [ ] learning_rate decay, keras, try
+
+  - [ ] interpret "step" in keras LearningRateDecay class
+
+    [Keras learning rate schedules and decay - PyImageSearch](https://www.pyimagesearch.com/2019/07/22/keras-learning-rate-schedules-and-decay/)
+
 - [ ] Check Code, process y.
+
+  [RUL-Net/data_processing.py at master · LahiruJayasinghe/RUL-Net (github.com)](https://github.com/LahiruJayasinghe/RUL-Net/blob/master/data_processing.py)
+
+  处理y，用分段函数来表述剩余寿命
+
+# 2021.12.28
+
+- [ ] dataset, check whether exist new
+
+  [hustcxl/Rotating-machine-fault-data-set: Open rotating mechanical fault datasets (开源旋转机械故障数据集整理) (github.com)](https://github.com/hustcxl/Rotating-machine-fault-data-set)
+
+  [CMAPSS的个人理解和CMAPSS、PHM08、09、12下载地址_分类保的博客-CSDN博客_cmapss](https://blog.csdn.net/qq_37117980/article/details/95343811)
+
+- [ ] others Code, check evaluate
+
+- [ ] learning_rate decay, keras, try
+
+  - [ ] interpret "step" in keras LearningRateDecay class
+
+    [Keras learning rate schedules and decay - PyImageSearch](https://www.pyimagesearch.com/2019/07/22/keras-learning-rate-schedules-and-decay/)
+
+- [ ] Check Code, process y.
+
+  [RUL-Net/data_processing.py at master · LahiruJayasinghe/RUL-Net (github.com)](https://github.com/LahiruJayasinghe/RUL-Net/blob/master/data_processing.py)
+
+  处理y，用分段函数来表述剩余寿命
