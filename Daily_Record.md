@@ -832,12 +832,135 @@ tomorrow TODO
 
 - [ ] learning_rate decay, keras, try
 
-  - [ ] interpret "step" in keras LearningRateDecay class
+  - [x] interpret "step" in keras LearningRateDecay class
 
     [Keras learning rate schedules and decay - PyImageSearch](https://www.pyimagesearch.com/2019/07/22/keras-learning-rate-schedules-and-decay/)
+    
+  - [ ] pratise it with my own juypter notebook.
 
 - [ ] Check Code, process y.
 
   [RUL-Net/data_processing.py at master · LahiruJayasinghe/RUL-Net (github.com)](https://github.com/LahiruJayasinghe/RUL-Net/blob/master/data_processing.py)
 
   处理y，用分段函数来表述剩余寿命
+
+
+
+# 2021.12.29
+
+今天开始正式查看最后搜寻的资料
+
+查看别人的数据处理，别人的评价方式，有的是使用
+
+- 简单得MAE，bias，也就是预测值和真实值的平均
+
+
+
+# 2021.12.30
+
+今天主要还是去了解数据、加上数据处理、数据y值(RUL)的处理、模型的评价
+
+> 1. 数据如何处理，关注特征
+> 2. y值（RUL）如何处理
+> 3. 如何评价模型
+
+不搞好这些，就要继续看，不能够中途放弃任何一个想要学习的项目。
+
+[Ali-Alhamaly/Turbofan_usefull_life_prediction: given run to failure measurements of various sensors on a sample of similar jet engines, estimate the remaining useful life (RUL) of a new jet engine that has measurements of the same sensor for a period of time equal to its current operational time. (github.com)](https://github.com/Ali-Alhamaly/Turbofan_usefull_life_prediction)
+
+
+
+Data Exploration
+
+1 sn_9, sn_14 indicates that the trnd depends on the specific engine. 
+
+2 other columns show an apparent trend as the fault prpagate throughout the engine cycles
+
+linear trending
+
+**1、如何数据处理**
+
+---
+
+3 optional settings, altitude(0-42k ft.), mach number (0 - 0.84), and throttle resolver angle(TRA)(20-100)
+
+21 sensors
+
+contaminated with sensor noise.
+
+**problem**: **fused** these sensors into a condition indicator or a health index that help in identifying the occurrence of a failure
+
+**method:** compare how similar the testing fused signal to the raining fused signal.
+
+correlation, displot(discrete variable),
+
+linear trending,
+
+Dimensionality reduction PCA
+
+PCA -> PCA
+
+21 -> 6 -> 3
+
+summary of data exploration and dimensionality reduction
+
+1. sensors that do not change with time are dropped since they do not offer any information toward the end of life.
+2. sensors, not have apparent trend are droped
+3. linear regression, 6 sensors kept, 
+4. further, take 3 principle components for the data
+
+**Fusing Sensors:**
+
+Health Index (HI) sensor, 
+
+RUL_high = 300, RUL_low = 5
+
+how to fuse HI, linear and logistic model
+
+HI: noisy, processed it with Savitzky-Golay(Sav_gol) filter 
+
+2、y值如何处理
+
+---
+
+> 使用HI作为health indicator 来表明剩余寿命，表明当前的寿命指数
+
+**Fitting the Model:**
+$$
+y = a [\exp(b * t) - 1] = \mathrm{HI}
+$$
+steps:
+
+1. removing low variance sensors
+2. normalize x using StandardScaler
+3. find linear trend with each xi
+4. from xnorm, find a subset of r sensors(r highest aboslute linear slope), xslope
+5. perform PCA on xslope to reduce dimensionally to space of n columns. xpca
+
+
+$$
+f(x)=\left\{
+\begin{aligned}
+&1, y >= 1 \\
+&y , otherwise\\
+&0  ,y<=0
+\end{aligned}
+\right.
+$$
+
+$$
+y_{fused} = \theta^T \mathrm{x}_{pca} + \theta_0
+$$
+
+# 2021.12.31
+
+1. 处理数据
+2. 去除几个不变变量，取6个sensors作为主成分的输入变量
+3. 拿到排名前90%的主成分作为最后的三个变量
+4. 输入这三个变量，到一个模型中去融合
+5. 得到一个变量，这个变量作为HI（使用指数函数来拟合的）
+6. 取HI变量作为一个变量，与RUL对应起来
+
+关于模型的建立，如何输入数据到模型中，如何进行预测，得到我们想要的RUL值
+
+这个键盘是我用过最好的键盘，这个键盘的弹力实在是太强了，虽然说我没用过别的键盘，但是现在这个巧克力键盘是当前我用到的键盘中感受最好的。
